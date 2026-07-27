@@ -1,9 +1,0 @@
-{:paths ["src" "test"]
- :tasks
- {test {:doc "Run handotai cljc actor boundary tests"
-        :task (do
-                (require 'clojure.test
-                         'handotai.murakumo-test)
-                (let [run-tests (requiring-resolve 'clojure.test/run-tests)
-                      r (run-tests 'handotai.murakumo-test)]
-                  (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1))))}}}
