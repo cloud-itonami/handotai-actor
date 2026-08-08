@@ -1,3 +1,22 @@
+> ## ⚠ この文書は **この repo のものではない**
+>
+> 以下は兄弟 repo **`cloud-itonami/handotai`**（west: `orgs/cloud-itonami/handotai`）の
+> CLAUDE.md の写しで、そちらの実装（`appview/etzhayyim-wasm-handotai-dtyy44cr/` —
+> `component.wasm` + SvelteKit）を説明している。**この repo にその実装は無い** —
+> 下の Build & Deploy 節が `cd` する先も、この repo には存在しない。
+>
+> さらに、兄弟側の原本にある **DEPRECATED** 銘がこの写しからは落ちている。原本はこう
+> 書いている:
+>
+> > **DEPRECATED**: Actor migrated to `20-actors/handotai/actor-manifest.jsonld`
+> > (T1 MCP-Compose). This project wasm/\*/src/app.ts is retained as T3 fallback only.
+>
+> つまり以下の Build & Deploy 手順は **deprecated な T3 fallback のもの**であって現行の
+> actor 経路ではない。その移行先である `actor-manifest.jsonld` は**この repo にある**。
+>
+> **この repo が何であるかは [README.md](README.md) を読むこと。** この写しは、上記の
+> 断りを付けた上で、兄弟側の記述への参照として残している。
+
 # etzhayyim-project-handotai — Semiconductor Intelligence Platform
 
 ## App Identity

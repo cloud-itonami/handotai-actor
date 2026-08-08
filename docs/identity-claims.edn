@@ -1,0 +1,89 @@
+;; docs/identity-claims.edn — この repo が名乗る identity claim と、その **実測**。
+;;
+;; なぜ EDN で持つか: README に散文で「A は解決するが B はしない」と書くと、
+;; 直った瞬間・悪化した瞬間の両方で README が黙って嘘になる。ここに測定値を
+;; 固定して scripts/verify-descriptor.cljs に突き合わせさせると、**どちらに
+;; 動いても赤くなる**（直ったら「doc を更新せよ」と言って落ちる）。
+;;
+;; 手編集してよい唯一のタイミングは「実際に測り直して、README も直したとき」。
+;;
+;; :measured の :http は curl/fetch の HTTP status。0 は「接続そのものが失敗」
+;; （DNS 不在・TLS 不成立）であって 0 件・空応答ではない。
+
+{:measured-at "2026-08-08"
+ :measured-how "curl -sL --max-time 15 -o /dev/null -w '%{http_code}'"
+
+ :claims
+ [{:id            :did/committed
+   :source        ".well-known/did.json → id"
+   :did           "did:web:etzhayyim.com:actor:handotai"
+   ;; did:web 解決規則（W3C did:web）: method-specific id の ':' を '/' にして
+   ;; https:// を付ける。path 成分が無い場合だけ /.well-known/ を挟む。
+   :resolves-to   "https://etzhayyim.com/actor/handotai/did.json"
+   :measured      {:http 200 :matches-committed-bytes? false}
+   :note          "解決はする。ただし **配信されている文書は、この repo が commit している文書と別物**。
+                   同じ id を名乗るが @context の suite（ed25519-2020 / jws-2020）・alsoKnownAs
+                   （4 件 / 空）・service endpoint（pds.etzhayyim.com / pds.aozora.app）が食い違う。
+                   つまりこの repo の .well-known/did.json は live DID document の source ではない。"}
+
+  {:id            :did/manifest
+   :source        "actor-manifest.jsonld → @id"
+   :did           "did:web:handotai.etzhayyim.com"
+   :resolves-to   "https://handotai.etzhayyim.com/.well-known/did.json"
+   :measured      {:http 0}
+   :note          "ホストが存在しない。manifest の @id は 2026-07-02 の
+                   'migrate did:web to etzhayyim.com scheme'（4be1a4c）で did.json だけが
+                   移行され、manifest が取り残されたもの。"}
+
+  {:id            :did/claude-md
+   :source        "CLAUDE.md → AT bot DID"
+   :did           "did:web:handotai-dtyy44cr.etzhayyim.com"
+   :resolves-to   "https://handotai-dtyy44cr.etzhayyim.com/.well-known/did.json"
+   :measured      {:http 0}
+   :note          "3 つ目の形。nanoid 付きホスト名。ホストは存在しない。"}
+
+  {:id            :context/actor-v1
+   :source        "actor-manifest.jsonld → @context"
+   :url           "https://etzhayyim.com/ns/actor/v1"
+   :resolves-to   "https://etzhayyim.com/ns/actor/v1"
+   :measured      {:http 404}
+   :note          "JSON-LD context が未公開。よってこの文書は JSON-LD として展開できず、
+                   実質ただの JSON である。"}
+
+  {:id            :surface/github-pages
+   :source        ".nojekyll があるので Pages 配信を意図していたと読める"
+   :url           "https://cloud-itonami.github.io/handotai-actor/.well-known/did.json"
+   :resolves-to   "https://cloud-itonami.github.io/handotai-actor/.well-known/did.json"
+   :measured      {:http 404}
+   :note          "Pages は有効化されていない。.nojekyll は etzhayyim 時代の名残。"}]
+
+ ;; 同名の兄弟 repo。west に 2 つ登録されており、片方だけを見ると必ず誤読する。
+ :sibling
+ {:repo        "cloud-itonami/handotai"
+  :west-path   "orgs/cloud-itonami/handotai"
+  :west-pin    "c3ea2e94574687a66189f7204de5007b1b9d2880"
+  :kind        :app                     ; README.edn: :kind :app
+  :origin      "etzhayyim/root 60-apps/etzhayyim-project-handotai を切り出したもの"
+  :holds       "appview/etzhayyim-wasm-handotai-dtyy44cr/（component.wasm + SvelteKit）"
+  :note        "この repo(handotai-actor)は 20-actors 由来の **descriptor**、兄弟(handotai)は
+                60-apps 由来の **実装**。この repo の CLAUDE.md は兄弟の CLAUDE.md の写しで、
+                Build & Deploy 節が cd する先は兄弟側にしか無い。
+                さらに兄弟側の CLAUDE.md 冒頭にある **DEPRECATED 銘**
+                （'Actor migrated to 20-actors/handotai/actor-manifest.jsonld (T1 MCP-Compose).
+                This project wasm/*/src/app.ts is retained as T3 fallback only.'）が
+                この repo の写しには無い。よってこの repo の CLAUDE.md だけを読むと、
+                deprecated な T3 fallback の deploy 手順を現行手順として読んでしまう。"}
+
+ ;; CLAUDE.md がその事実を指していること。銘を黙って外せないようにする。
+ :claude-md-must-mention ["cloud-itonami/handotai" "DEPRECATED"]
+
+ ;; ファイルが参照している先が実在するか。これは network を要らない。
+ :dangling-references
+ [{:from "NOTICE" :refers-to "CHARTER-RIDER.md" :exists? false
+   :note "NOTICE が Rider 本文を 'see CHARTER-RIDER.md' と指しているが repo に無い。
+          LICENSE ファイルも無い（NOTICE は Apache-2.0 + Rider を主張している）。"}
+  {:from "actor-manifest.jsonld" :refers-to "90-docs/rules/compliance/per-did-kyumei-shinka-autonomy.md" :exists? false
+   :note "complianceDocs は etzhayyim monorepo 内のパス。この repo には 90-docs/ が無い。"}
+  {:from "actor-manifest.jsonld" :refers-to "90-docs/platform/260403-live-data-kyumei-shinka-consolidated.md" :exists? false}
+  {:from "CLAUDE.md" :refers-to "60-apps/etzhayyim-project-handotai/wasm/etzhayyim-wasm-handotai-dtyy44cr" :exists? false
+   :note "CLAUDE.md の Build & Deploy 節が cd する先。この repo には無い（実装は別リポジトリ）。"}]}
