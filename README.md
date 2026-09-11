@@ -21,8 +21,8 @@
 主張することを全部検査する。
 
 ```bash
-nbb scripts/verify-descriptor.cljk             # 構造不変条件のみ（network 不要）
-nbb scripts/verify-descriptor.cljk --network   # did:web を実際に解決して照合する
+kbb --backend sci scripts/verify-descriptor.cljk             # 構造不変条件のみ（network 不要）
+kbb --backend sci scripts/verify-descriptor.cljk --network   # did:web を実際に解決して照合する
 ```
 
 `--network` 無しで 30 検査、有りで 36 検査。手順は [docs/operator-quickstart.md](docs/operator-quickstart.md)。
