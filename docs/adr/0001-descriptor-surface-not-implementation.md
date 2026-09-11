@@ -43,7 +43,7 @@
 **未解決の identity 分裂は、この repo では解決しない。** どの名乗りを正とするかは
 配信側（`etzhayyim.com` を serve しているもの）と PDS の運用を含む決定で、descriptor
 repo 単独では決められない。代わりに **実測値を `docs/identity-claims.edn` に固定し、
-`scripts/verify-descriptor.cljs` が現在の測定と突き合わせる**。
+`scripts/verify-descriptor.cljk` が現在の測定と突き合わせる**。
 
 固定した値は「あるべき姿」ではなく「2026-08-08 に測った姿」である。したがって
 verifier は **分裂が解消した場合にも赤くなる** — その時は doc を更新せよ、という意味で

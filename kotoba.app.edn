@@ -1,10 +1,10 @@
 ;; kotoba.app.edn — actor:handotai KOTOBA Mesh application manifest (observatory on-kse, ADR-2606230001 §4).
-;; Deploy: kotoba app deploy kotoba.app.edn  (compiles methods/mesh.clj → CID → control datoms)
+;; Deploy: kotoba app deploy kotoba.app.edn  (compiles methods/mesh.cljk → CID → control datoms)
 {:kotoba.app/name    "handotai"
  :kotoba.app/version "0.1.0"
  :kotoba.app/components
  [{:name     "handotai"
-   :src      "methods/mesh.clj"                  ; Clojure default → run + on-kse
+   :src      "methods/mesh.cljk"                  ; Clojure default → run + on-kse
    :scale    1
    :triggers [{:type :kse :topic "etzhayyim/actor/handotai"}]
    :requires #{:cap/kqe}}]

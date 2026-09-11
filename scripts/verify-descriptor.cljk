@@ -1,8 +1,8 @@
 #!/usr/bin/env nbb
-;; scripts/verify-descriptor.cljs — この repo が名乗っていることを、実際に確かめる。
+;; scripts/verify-descriptor.cljk — この repo が名乗っていることを、実際に確かめる。
 ;;
-;;   nbb scripts/verify-descriptor.cljs              # offline のみ（CI 既定）
-;;   nbb scripts/verify-descriptor.cljs --network    # did:web を実際に解決する
+;;   nbb scripts/verify-descriptor.cljk              # offline のみ（CI 既定）
+;;   nbb scripts/verify-descriptor.cljk --network    # did:web を実際に解決する
 ;;
 ;; この repo は実装ではなく **descriptor surface**（README 参照）なので、壊れ方は
 ;; 「テストが赤くなる」ではなく「書いてあることが静かに嘘になる」である。だから
