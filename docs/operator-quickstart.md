@@ -18,7 +18,7 @@ west を使わないなら `git clone git@github.com:cloud-itonami/handotai-acto
 ## 2. 構造を検査する（network 不要）
 
 ```bash
-nbb scripts/verify-descriptor.cljk
+kbb --backend sci scripts/verify-descriptor.cljk
 ```
 
 期待される最後の行は `30 検査 / 0 失敗`。これが見ているもの:
@@ -38,7 +38,7 @@ nbb scripts/verify-descriptor.cljk
 ## 3. identity を実際に解決する
 
 ```bash
-nbb scripts/verify-descriptor.cljk --network
+kbb --backend sci scripts/verify-descriptor.cljk --network
 ```
 
 期待される最後の行は `36 検査 / 0 失敗`。**`0 失敗` は「全部健全」という意味ではない** —
