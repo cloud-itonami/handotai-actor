@@ -17,12 +17,12 @@
 
 ## 確かめる
 
-散文ではなく実行で確かめられる。`scripts/verify-descriptor.cljs` が、この README が
+散文ではなく実行で確かめられる。`scripts/verify-descriptor.cljk` が、この README が
 主張することを全部検査する。
 
 ```bash
-nbb scripts/verify-descriptor.cljs             # 構造不変条件のみ（network 不要）
-nbb scripts/verify-descriptor.cljs --network   # did:web を実際に解決して照合する
+nbb scripts/verify-descriptor.cljk             # 構造不変条件のみ（network 不要）
+nbb scripts/verify-descriptor.cljk --network   # did:web を実際に解決して照合する
 ```
 
 `--network` 無しで 30 検査、有りで 36 検査。手順は [docs/operator-quickstart.md](docs/operator-quickstart.md)。
@@ -34,12 +34,12 @@ nbb scripts/verify-descriptor.cljs --network   # did:web を実際に解決し�
 | `actor-manifest.jsonld` | actor 宣言。5 pipeline（cron×2 / subscribeRepos / xrpc×2）、6 writer DID、RSS 6 本 |
 | `.well-known/did.json` | DID document（**配信されているものとは別物** — 下記） |
 | `kotoba.app.edn` | KOTOBA Mesh app manifest。component 1 本、`:requires #{:cap/kqe}` |
-| `methods/mesh.clj` | その component 実体。20 行。`observe` / `run` / `on-kse` |
+| `methods/mesh.cljk` | その component 実体。20 行。`observe` / `run` / `on-kse` |
 | `docs/identity-claims.edn` | 下の表の**実測値を固定したもの**。verifier の期待値 |
 | `CLAUDE.md` | **兄弟 repo の写し**。冒頭の断り書きを読むこと |
 | `storage-profile.edn` / `NOTICE` / `.nojekyll` | 保管方針 / 出所・ライセンス表示 / Pages 残骸 |
 
-`methods/mesh.clj` は「半導体供給の観測点」を KOTOBA Mesh に置くもので、node→stage の
+`methods/mesh.cljk` は「半導体供給の観測点」を KOTOBA Mesh に置くもので、node→stage の
 生産辺を Datom として assert し、Datalog で供給段の集中度を導いて RESILIENCE に流す。
 **姿勢は resilience / diversification map であって target list ではない**（公開事実のみ、
 集計のみ）。これは manifest が宣言する RSS クロール実装とは**別の runtime**である。

@@ -18,7 +18,7 @@ west を使わないなら `git clone git@github.com:cloud-itonami/handotai-acto
 ## 2. 構造を検査する（network 不要）
 
 ```bash
-nbb scripts/verify-descriptor.cljs
+nbb scripts/verify-descriptor.cljk
 ```
 
 期待される最後の行は `30 検査 / 0 失敗`。これが見ているもの:
@@ -28,7 +28,7 @@ nbb scripts/verify-descriptor.cljs
 - DID document の `service[].id` が DID を prefix に持つこと（DID Core）
 - `kotoba.app.edn` の component の `:src` が実在し、`run` を定義していること。
   `:kse` trigger を持つなら `on-kse` も定義していること
-- **capability 宣言と実際の呼び出しの一致** — `methods/mesh.clj` が `kqe-*` を呼ぶなら
+- **capability 宣言と実際の呼び出しの一致** — `methods/mesh.cljk` が `kqe-*` を呼ぶなら
   `:requires` に `:cap/kqe` があること（逆も）
 - `docs/identity-claims.edn` に固定した「参照先の実在」が実測と一致すること
 - 各 `did:web` の解決 URL が、DID から機械的に導いたものと一致すること
@@ -38,7 +38,7 @@ nbb scripts/verify-descriptor.cljs
 ## 3. identity を実際に解決する
 
 ```bash
-nbb scripts/verify-descriptor.cljs --network
+nbb scripts/verify-descriptor.cljk --network
 ```
 
 期待される最後の行は `36 検査 / 0 失敗`。**`0 失敗` は「全部健全」という意味ではない** —
@@ -59,7 +59,7 @@ nbb scripts/verify-descriptor.cljs --network
 kotoba app deploy kotoba.app.edn
 ```
 
-`methods/mesh.clj` を CID にコンパイルして control datom に載せる。`:requires #{:cap/kqe}`
+`methods/mesh.cljk` を CID にコンパイルして control datom に載せる。`:requires #{:cap/kqe}`
 なので **KOTOBA Mesh 側で `cap/kqe` が付与されていないと admission で落ちる**（deny by
 default）。この repo 単体では検証できない部分なので、上の verifier は「宣言と呼び出しが
 一致しているか」までしか見ない。
