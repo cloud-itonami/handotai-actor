@@ -36,7 +36,7 @@
                    移行され、manifest が取り残されたもの。"}
 
   {:id            :did/claude-md
-   :source        "CLAUDE.md → AT bot DID"
+   :source        "AGENTS.md → AT bot DID"
    :did           "did:web:handotai-dtyy44cr.etzhayyim.com"
    :resolves-to   "https://handotai-dtyy44cr.etzhayyim.com/.well-known/did.json"
    :measured      {:http 0}
@@ -66,15 +66,15 @@
   :origin      "etzhayyim/root 60-apps/etzhayyim-project-handotai を切り出したもの"
   :holds       "appview/etzhayyim-wasm-handotai-dtyy44cr/（component.wasm + SvelteKit）"
   :note        "この repo(handotai-actor)は 20-actors 由来の **descriptor**、兄弟(handotai)は
-                60-apps 由来の **実装**。この repo の CLAUDE.md は兄弟の CLAUDE.md の写しで、
+                60-apps 由来の **実装**。この repo の AGENTS.md は兄弟の AGENTS.md の写しで、
                 Build & Deploy 節が cd する先は兄弟側にしか無い。
-                さらに兄弟側の CLAUDE.md 冒頭にある **DEPRECATED 銘**
+                さらに兄弟側の AGENTS.md 冒頭にある **DEPRECATED 銘**
                 （'Actor migrated to 20-actors/handotai/actor-manifest.jsonld (T1 MCP-Compose).
                 This project wasm/*/src/app.ts is retained as T3 fallback only.'）が
-                この repo の写しには無い。よってこの repo の CLAUDE.md だけを読むと、
+                この repo の写しには無い。よってこの repo の AGENTS.md だけを読むと、
                 deprecated な T3 fallback の deploy 手順を現行手順として読んでしまう。"}
 
- ;; CLAUDE.md がその事実を指していること。銘を黙って外せないようにする。
+ ;; AGENTS.md がその事実を指していること。銘を黙って外せないようにする。
  :claude-md-must-mention ["cloud-itonami/handotai" "DEPRECATED"]
 
  ;; ファイルが参照している先が実在するか。これは network を要らない。
@@ -85,5 +85,5 @@
   {:from "actor-manifest.jsonld" :refers-to "90-docs/rules/compliance/per-did-kyumei-shinka-autonomy.md" :exists? false
    :note "complianceDocs は etzhayyim monorepo 内のパス。この repo には 90-docs/ が無い。"}
   {:from "actor-manifest.jsonld" :refers-to "90-docs/platform/260403-live-data-kyumei-shinka-consolidated.md" :exists? false}
-  {:from "CLAUDE.md" :refers-to "60-apps/etzhayyim-project-handotai/wasm/etzhayyim-wasm-handotai-dtyy44cr" :exists? false
-   :note "CLAUDE.md の Build & Deploy 節が cd する先。この repo には無い（実装は別リポジトリ）。"}]}
+  {:from "AGENTS.md" :refers-to "60-apps/etzhayyim-project-handotai/wasm/etzhayyim-wasm-handotai-dtyy44cr" :exists? false
+   :note "AGENTS.md の Build & Deploy 節が cd する先。この repo には無い（実装は別リポジトリ）。"}]}

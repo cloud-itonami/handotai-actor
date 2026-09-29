@@ -1,7 +1,7 @@
 > ## ⚠ この文書は **この repo のものではない**
 >
 > 以下は兄弟 repo **`cloud-itonami/handotai`**（west: `orgs/cloud-itonami/handotai`）の
-> CLAUDE.md の写しで、そちらの実装（`appview/etzhayyim-wasm-handotai-dtyy44cr/` —
+> AGENTS.md の写しで、そちらの実装（`appview/etzhayyim-wasm-handotai-dtyy44cr/` —
 > `component.wasm` + SvelteKit）を説明している。**この repo にその実装は無い** —
 > 下の Build & Deploy 節が `cd` する先も、この repo には存在しない。
 >

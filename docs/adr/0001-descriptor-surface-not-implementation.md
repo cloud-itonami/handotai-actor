@@ -10,7 +10,7 @@
 
 `cloud-itonami/handotai-actor` は 2026-05-21 に etzhayyim monorepo の `20-actors/` から
 切り出された（`NOTICE`、commit `788178a`）。しかし切り出し以降、**この repo が何であるか
-を述べた文書が 1 つも無かった** — README も ADR も無く、唯一の散文である `CLAUDE.md` は
+を述べた文書が 1 つも無かった** — README も ADR も無く、唯一の散文である `AGENTS.md` は
 兄弟 repo の写しだった。
 
 その結果、実測できる形で次の混乱が残っていた（2026-08-08 実測、
@@ -20,14 +20,14 @@
    `20-actors` 由来の descriptor）と `handotai`（`60-apps` 由来の実装、`:kind :app`、
    `appview/etzhayyim-wasm-handotai-dtyy44cr/` に `component.wasm` + SvelteKit を持つ）。
    名前からはどちらがどちらか分からない。
-2. **この repo の `CLAUDE.md` は兄弟の写しで、しかも原本にある `DEPRECATED` 銘が
+2. **この repo の `AGENTS.md` は兄弟の写しで、しかも原本にある `DEPRECATED` 銘が
    落ちている。** 原本は当該実装を「T3 fallback only、actor は
    `20-actors/handotai/actor-manifest.jsonld` へ移行済み」と明記しているが、写しには
    それが無い。よってこの repo だけを読むと、**deprecated な fallback の deploy 手順を
    現行手順として読む**。移行先の `actor-manifest.jsonld` はこの repo にある。
 3. **identity が 4 つに割れ、解決するのは 1 つだけ。** `did.json` の
    `did:web:etzhayyim.com:actor:handotai` のみ 200。manifest の `@id`
-   （`did:web:handotai.etzhayyim.com`）と `CLAUDE.md` の
+   （`did:web:handotai.etzhayyim.com`）と `AGENTS.md` の
    （`did:web:handotai-dtyy44cr.etzhayyim.com`）は接続不可、`@context` は 404。
    原因は `4be1a4c` の did:web scheme 移行で `did.json` だけが移行され manifest が
    取り残されたこと。
@@ -53,7 +53,7 @@ verifier は **分裂が解消した場合にも赤くなる** — その時は 
 ## Consequences
 
 - README が名乗りを持ち、2 repo の区別が最初の表で読める。
-- `CLAUDE.md` は冒頭に断り書きを持つ。verifier がその文言（`cloud-itonami/handotai` と
+- `AGENTS.md` は冒頭に断り書きを持つ。verifier がその文言（`cloud-itonami/handotai` と
   `DEPRECATED`）の存在を検査するので、黙って外せない。
 - 検査は 2 層。network 不要な構造不変条件（30）と、did:web を実際に解決する照合（+6）。
   CI は前者だけでも回せる。

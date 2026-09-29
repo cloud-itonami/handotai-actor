@@ -36,7 +36,7 @@ kbb --backend sci scripts/verify-descriptor.cljk --network   # did:web を実際
 | `kotoba.app.edn` | KOTOBA Mesh app manifest。component 1 本、`:requires #{:cap/kqe}` |
 | `methods/mesh.cljk` | その component 実体。20 行。`observe` / `run` / `on-kse` |
 | `docs/identity-claims.edn` | 下の表の**実測値を固定したもの**。verifier の期待値 |
-| `CLAUDE.md` | **兄弟 repo の写し**。冒頭の断り書きを読むこと |
+| `AGENTS.md` | **兄弟 repo の写し**。冒頭の断り書きを読むこと |
 | `storage-profile.edn` / `NOTICE` / `.nojekyll` | 保管方針 / 出所・ライセンス表示 / Pages 残骸 |
 
 `methods/mesh.cljk` は「半導体供給の観測点」を KOTOBA Mesh に置くもので、node→stage の
@@ -53,7 +53,7 @@ kbb --backend sci scripts/verify-descriptor.cljk --network   # did:web を実際
 |---|---|---|
 | `did:web:etzhayyim.com:actor:handotai` | `.well-known/did.json` | **200** |
 | `did:web:handotai.etzhayyim.com` | `actor-manifest.jsonld` の `@id` | 接続不可 |
-| `did:web:handotai-dtyy44cr.etzhayyim.com` | `CLAUDE.md` | 接続不可 |
+| `did:web:handotai-dtyy44cr.etzhayyim.com` | `AGENTS.md` | 接続不可 |
 | `https://etzhayyim.com/ns/actor/v1` | manifest の `@context` | **404** |
 
 **唯一解決する 1 つも、配信されている文書はこの repo の commit と別物である。** id は
@@ -74,7 +74,7 @@ live DID document の source ではない** — 誰か別のものが配信し�
 |---|---|---|
 | `NOTICE` | `CHARTER-RIDER.md` | 無い（`LICENSE` も無い。NOTICE は Apache-2.0 + Rider を主張） |
 | `actor-manifest.jsonld` | `90-docs/rules/compliance/...` ほか 1 件 | 無い（etzhayyim monorepo 内のパス） |
-| `CLAUDE.md` | `60-apps/etzhayyim-project-handotai/wasm/...` | 無い（兄弟 repo 側にある） |
+| `AGENTS.md` | `60-apps/etzhayyim-project-handotai/wasm/...` | 無い（兄弟 repo 側にある） |
 
 これも固定してあるので、埋まったら verifier が教える。
 

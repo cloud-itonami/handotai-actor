@@ -166,13 +166,13 @@
                 (str "実在が固定値と違う（固定=" (:exists? r)
                      " 実測=" (exists? (:refers-to r)) "）")))
 
-      ;; CLAUDE.md は兄弟 repo の写しなので、そのことを本文が名指ししていること。
+      ;; AGENTS.md は兄弟 repo の写しなので、そのことを本文が名指ししていること。
       ;; 銘を黙って外すと、deprecated な deploy 手順が現行手順として読まれる。
-      (let [cm (slurp* "CLAUDE.md")]
+      (let [cm (slurp* "AGENTS.md")]
         (doseq [needle (:claude-md-must-mention doc)]
           (check! (keyword "claude-md" (str "mentions/" needle))
                   (and cm (str/includes? cm needle))
-                  (str "CLAUDE.md が \"" needle "\" に触れていない"))))
+                  (str "AGENTS.md が \"" needle "\" に触れていない"))))
 
       ;; 固定した resolves-to が、did から機械的に導けるものと一致すること。
       (doseq [c (:claims doc) :when (:did c)]
