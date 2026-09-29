@@ -32,7 +32,7 @@ kbb --backend sci scripts/verify-descriptor.cljk
   `:requires` に `:cap/kqe` があること（逆も）
 - `docs/identity-claims.edn` に固定した「参照先の実在」が実測と一致すること
 - 各 `did:web` の解決 URL が、DID から機械的に導いたものと一致すること
-- `CLAUDE.md` が兄弟 repo（`cloud-itonami/handotai`）と `DEPRECATED` に触れていること
+- `AGENTS.md` が兄弟 repo（`cloud-itonami/handotai`）と `DEPRECATED` に触れていること
   — 冒頭の断り書きを黙って外せないようにするため
 
 ## 3. identity を実際に解決する
@@ -66,9 +66,9 @@ default）。この repo 単体では検証できない部分なので、上の 
 
 ## やらないこと
 
-- **`CLAUDE.md` の Build & Deploy 節を実行しない。** あれは兄弟 repo
+- **`AGENTS.md` の Build & Deploy 節を実行しない。** あれは兄弟 repo
   `cloud-itonami/handotai` の、しかも deprecated な T3 fallback の手順で、`cd` する先は
-  この repo に存在しない（`CLAUDE.md` 冒頭の断り書きを参照）。
+  この repo に存在しない（`AGENTS.md` 冒頭の断り書きを参照）。
 - **`.well-known/did.json` を編集して「直った」としない。** このファイルは live DID
   document の source ではない（配信文書と内容が食い違っていることを実測済み）。ここを
   変えても配信は変わらない。
